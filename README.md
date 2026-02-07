@@ -1,56 +1,38 @@
-📘 ENTREGA TRABAJO N°3 DE JUAN CRUZ QUIROGA – 
+# Ecommerce Backend – Usuarios, Autenticación y Autorización de Juan Cruz Quiroga 
 
-📦 Proyecto Backend – Productos y Carritos
-🚀 Tecnologías
+## Descripción
 
-Node.js
-Express
-MongoDB + Mongoose
-Handlebars
+Este proyecto corresponde a la implementación de un sistema de **gestión de usuarios**, **autenticación** y **autorización** dentro del ecommerce base provisto al inicio del curso.
 
-🛒 Productos
-GET /api/products
+La aplicación está desarrollada con **Node.js**, **Express**, **MongoDB**, **Mongoose**, **Passport** y **JWT**, cumpliendo con todos los puntos solicitados en la consigna.
 
-Soporta paginación, filtros y ordenamiento mediante query params.
+---
 
-🛍️ Carritos
-Endpoints implementados
+## Tecnologías utilizadas
 
-POST /api/carts
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Passport
+- Passport-Local
+- Passport-JWT
+- bcrypt
+- JSON Web Tokens (JWT)
 
-GET /api/carts/:cid (con populate de productos)
+---
 
-POST /api/carts/:cid/products/:pid
+## Modelo de Usuario
 
-PUT /api/carts/:cid → actualiza todos los productos
+Se implementó un modelo `User` con los siguientes campos:
 
-PUT /api/carts/:cid/products/:pid → actualiza cantidad
+- `first_name`: String
+- `last_name`: String
+- `email`: String (único)
+- `age`: Number
+- `password`: String (almacenada en formato hash)
+- `cart`: ObjectId con referencia a Carts
+- `role`: String (valor por defecto: `"user"`)
 
-DELETE /api/carts/:cid/products/:pid
+El modelo se encuentra en:
 
-DELETE /api/carts/:cid
-
-📌 En el modelo Cart, products.product referencia a Product.
-
-🖥️ Vistas (Handlebars)
-/products
-
-Lista productos con paginación
-
-Botón Agregar al carrito
-
-Link a detalle del producto
-
-/products/:pid
-
-Vista de detalle del producto
-
-Descripción, precio, categoría
-
-Botón Agregar al carrito
-
-/carts/:cid
-
-Muestra solo los productos del carrito
-
-Datos completos (gracias a populate)
