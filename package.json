@@ -1,7 +1,22 @@
 {
+  "name": "entrega1",
+  "version": "1.0.0",
+  "description": "CRUD usuarios + Auth JWT",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "dependencies": {
-    "express": "^5.1.0",
-    "express-handlebars": "^8.0.3",
-    "socket.io": "^4.8.1"
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.6.0",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }

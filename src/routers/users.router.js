@@ -1,25 +1,30 @@
 import { Router } from "express";
-import { UserModel } from "../models/user.model.js";
-import { createHash } from "../utils/bcrypt.js";
+import { userModel } from "../models/user.model.js";
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-  try {
-    const { first_name, last_name, email, age, password } = req.body;
 
-    const user = await UserModel.create({
-      first_name,
-      last_name,
-      email,
-      age,
-      password: createHash(password)
-    });
+router.get("/", async (req, res) => {
+    const users = await userModel.find();
+    res.json(users);
+});
 
-    res.status(201).send({ status: "success", user });
-  } catch (error) {
-    res.status(400).send({ status: "error", error });
-  }
+
+router.get("/:uid", async (req, res) => {
+    const user = await userModel.findById(req.params.uid);
+    res.json(user);
+});
+
+
+router.put("/:uid", async (req, res) => {
+    await userModel.findByIdAndUpdate(req.params.uid, req.body);
+    res.json({ message: "Usuario actualizado" });
+});
+
+
+router.delete("/:uid", async (req, res) => {
+    await userModel.findByIdAndDelete(req.params.uid);
+    res.json({ message: "Usuario eliminado" });
 });
 
 export default router;
